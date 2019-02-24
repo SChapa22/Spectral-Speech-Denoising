@@ -1,14 +1,14 @@
 % Audio Denoising by Time-Frequency Block Thresholding
-% Guoshen Yu, Stéphane Mallat, Fellow, IEEE, and Emmanuel Bacry%
+% Guoshen Yu, StÃ©phane Mallat, Fellow, IEEE, and Emmanuel Bacry%
 % IEEE TRANSACTIONS ON SIGNAL PROCESSING, VOL. 56, NO. 5, MAY 2008
 
 %-----Completed on 20.12.2018 - 20:20
-%-----Coded by: Y.Emir ARITÜRK
+%-----Coded by: Y.Emir ARITÃœRK
 %-----Version No: 1218-2-2
 
 %   load noisy sound example
 fprintf('-> Step 1/5: Load noisy.wav:\n');
-[y,Fs]=audioread('C:\Users\emir\Desktop\yeaCode\yeaSignalProcess\speech_denoising_4\noisy.wav'); % y=sampled data, Fs=sampling frequency
+[y,Fs]=audioread('your path to input sound source'); % y=sampled data, Fs=sampling frequency
 x=y(100300:end);  %x is the "beginning removed" and transposed version of the sampled data y. 
 fprintf('Load noisy.wav: OK...\n');
 
@@ -32,7 +32,7 @@ t_max=1.1;   % noise at the last moment(sn)
 fprintf('-> Step 2/5: Extract noise spectrum \n');
 t_index= T>t_min & T<t_max; %inspection interval
 absS_noise=abs(S(:,t_index)).^2; %power spectrum of the noise
-noise_spectrum=mean(absS_noise,2); %the resulting “denoised” signal estimator. it'll be used later in SNR estimation and linked to Wiener attenuation
+noise_spectrum=mean(absS_noise,2); %the resulting â€œdenoisedâ€ signal estimator. it'll be used later in SNR estimation and linked to Wiener attenuation
 noise_specgram=repmat(noise_spectrum,1,Nw); %creating a (repeat copy) noise matrix from noise spectrum vector to make size same as S. This value will be used in SNR estimation.
 fprintf('Extract noise spectrum: OK...\n');
 
@@ -134,5 +134,5 @@ fprintf('\nPlaying denoised speech:');
 denoised_speech = audioplayer(output_signal(1:(wait_time-1)*Fs), Fs);
 play(denoised_speech,Fs);
 fprintf('Denoised speech play completed...\n');
-audiowrite('C:\Users\emir\Desktop\yeaCode\yeaSignalProcess\speech_denoising_4\denoised.wav',output_signal,Fs);
+audiowrite('your path to output sound source',output_signal,Fs);
 fprintf('denoised.wav file has been successfuly created...\n');
